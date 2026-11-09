@@ -1,3 +1,4 @@
+import { INN_NAME, INN_TAGLINE } from "../config/inn";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { apiFetch } from "../lib/api";
@@ -41,9 +42,9 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-header">
-          <img className="auth-logo" src="/assets/images/logo-light.png" alt="Logo" />
+          <div className="auth-brand">{INN_NAME}</div>
           <h1 className="auth-title">Welcome back!</h1>
-          <p className="auth-subtitle">Login to continue</p>
+          <p className="auth-subtitle">{INN_TAGLINE}</p>
         </div>
 
         {errMsg && <div className="auth-alert">{errMsg}</div>}

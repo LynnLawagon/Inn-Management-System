@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# General Inn Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React + Express + MySQL inn operations system. It includes a dashboard, room management, guest records, employee accounts, inventory, transactions, sales, damage charges, and receipts.
 
-## Available Scripts
+The project was originally configured for one inn. This version makes the displayed inn identity, CORS origins, and sample hourly room charges configurable for another inn.
 
-In the project directory, you can run:
+## Requirements
 
-### `npm start`
+- Node.js (LTS recommended)
+- MySQL
+- The existing project database schema
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Database
 
-### `npm test`
+Create or import your MySQL database using the database schema supplied by your project/team. The application currently expects the existing tables and columns used by the backend routes. Set the database connection values in `backend/server/.env`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Backend
 
-### `npm run build`
+```bash
+cd backend/server
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Copy `.env.example` to `.env`, then update the database credentials and room rates.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Start the API:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm run dev
+```
 
-### `npm run eject`
+The API runs on port 5000 by default.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Frontend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In the project root:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Copy the root `.env.example` to `.env`. Change the inn name, tagline, currency, locale, and rates. The frontend rate values must match the backend rate values.
 
-## Learn More
+Start the frontend:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open `http://localhost:3000`.
 
-### Code Splitting
+## Configure it for another inn
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Update the root `.env`:
 
-### Analyzing the Bundle Size
+- `REACT_APP_INN_NAME`: the business name shown in the interface
+- `REACT_APP_INN_TAGLINE`: the login-page description
+- `REACT_APP_CURRENCY`: ISO 4217 currency code, such as `PHP`, `USD`, or `SGD`
+- `REACT_APP_LOCALE`: display locale, such as `en-PH` or `en-US`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Update both root `.env` and `backend/server/.env` rate values to the inn's pricing policy:
 
-### Making a Progressive Web App
+- `RATE_UP_TO_3_HOURS` / `REACT_APP_RATE_UP_TO_3_HOURS`
+- `RATE_UP_TO_8_HOURS` / `REACT_APP_RATE_UP_TO_8_HOURS`
+- `RATE_UP_TO_24_HOURS` / `REACT_APP_RATE_UP_TO_24_HOURS`
+- `RATE_EACH_EXTRA_HOUR` / `REACT_APP_RATE_EACH_EXTRA_HOUR`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Restart the frontend after changing its `.env`; React environment variables are read at build/start time.
 
-### Advanced Configuration
+## Deployment notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Set `CLIENT_ORIGINS` in the backend environment to the exact deployed frontend origin(s), separated by commas.
+- Set all database credentials as hosting-provider environment variables. Never commit `.env` files.
+- Build the frontend with `npm run build`.
+- Deploy the backend and frontend with their respective environment variables.
+- Use HTTPS in production.
+- Back up the database regularly.
 
-### Deployment
+## Important scope note
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This update does not automatically create a separate database tenant for every inn. Each inn should use its own database (or a future tenant-aware database design) and its own environment configuration. Existing room types, room records, inventory, employee accounts, and historical transactions remain database-managed and must be initialized for each deployment.
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The original schema was not included in the uploaded project, so this package keeps the existing database structure and API contracts intact rather than inventing a new schema.

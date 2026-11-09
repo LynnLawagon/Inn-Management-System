@@ -1,3 +1,4 @@
+import { INN_NAME, INN_TAGLINE } from "../config/inn";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
@@ -155,8 +156,8 @@ export default function Auth() {
       <div className="authCard">
         <div className="brandPane">
           <div className="brandTop">EST. 2019</div>
-          <div className="brandTitle">LegaspiInn</div>
-          <div className="brandSub">Hotel Management System</div>
+          <div className="brandTitle">{INN_NAME}</div>
+          <div className="brandSub">{INN_TAGLINE}</div>
         </div>
 
         <div className="formPane">

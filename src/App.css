@@ -1979,3 +1979,13 @@ img{
     overflow-x: hidden;
   }
 }
+/* Generic inn branding */
+.inn-brand-name {
+  display: block;
+  max-width: 170px;
+  color: #f5e9dc;
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}

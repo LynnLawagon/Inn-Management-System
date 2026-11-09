@@ -1,3 +1,4 @@
+import { INN_NAME } from "./config/inn";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./App.css";
@@ -53,7 +54,7 @@ export default function Layout() {
       <aside className={sidebarClass}>
         <div className="sb-top">
           <div className="logo">
-            <img src="/assets/images/logo.png" alt="Legaspi Inn Logo" />
+            <span className="inn-brand-name">{INN_NAME}</span>
           </div>
 
           <button

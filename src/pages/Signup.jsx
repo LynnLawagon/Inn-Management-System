@@ -1,3 +1,4 @@
+import { INN_NAME } from "../config/inn";
 
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -106,9 +107,9 @@ export default function Signup() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-header">
-          <img className="auth-logo" src="/assets/images/logo-light.png" alt="Logo" />
+          <div className="auth-brand">{INN_NAME}</div>
           <h1 className="auth-title">Create account</h1>
-          <p className="auth-subtitle">Register to access Legaspi Inn system</p>
+          <p className="auth-subtitle">Register to access {INN_NAME}</p>
         </div>
 
         {errMsg && <div className="auth-alert">{errMsg}</div>}

@@ -21,9 +21,18 @@ const employeeDamageRoutes = require("./routes/employee_damage");
 
 const app = express();
 
+const allowedOrigins = (process.env.CLIENT_ORIGINS || "http://localhost:3000")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin(origin, callback) {
+      // Allow server-to-server and local tooling requests without an Origin header.
+      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(new Error("Origin is not allowed by CORS"));
+    },
     credentials: true,
   })
 );

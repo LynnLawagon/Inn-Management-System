@@ -13,13 +13,18 @@ const router = express.Router();
 // 7. Later, accumulate additional charges such as guest damages and purchased items.
 // 8. Compute the final bill as the sum of room cost, damage charges, and sales totals.
 
+// Default rates are examples only. Configure these in backend/server/.env
+// for the inn's own pricing policy.
 function calculateRoomRate(hours) {
+  const rate3 = Number(process.env.RATE_UP_TO_3_HOURS || 80);
+  const rate8 = Number(process.env.RATE_UP_TO_8_HOURS || 150);
+  const rate24 = Number(process.env.RATE_UP_TO_24_HOURS || 200);
+  const extraHour = Number(process.env.RATE_EACH_EXTRA_HOUR || 20);
   if (hours <= 0) return 0;
-  if (hours <= 3) return 80;
-  if (hours <= 8) return 150;
-  if (hours <= 12) return 200;
-  if (hours <= 24) return 200;
-  return 200 + 20 * (hours - 24);
+  if (hours <= 3) return rate3;
+  if (hours <= 8) return rate8;
+  if (hours <= 24) return rate24;
+  return rate24 + extraHour * (hours - 24);
 }
 
 function computeRoomHours(checkin, checkout) {
