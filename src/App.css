@@ -1989,3 +1989,159 @@ img{
   font-weight: 800;
   overflow-wrap: anywhere;
 }
+
+/* --------------------------------------------------------------------------
+   General Inn — professional interface refresh
+   -------------------------------------------------------------------------- */
+:root {
+  --bg: #f4f6f8;
+  --panel: #ffffff;
+  --panel-soft: #ffffff;
+  --panel-soft-2: #fbfcfd;
+  --panel-head: #f5f7fa;
+  --text: #172b4d;
+  --text-soft: #66758a;
+  --accent: #247a78;
+  --accent-2: #32918d;
+  --shadow: 0 2px 10px rgba(23, 43, 77, .06);
+  --shadow-lg: 0 18px 48px rgba(23, 43, 77, .12);
+  --radius: 14px;
+  --sidebar-w: 248px;
+  --sidebar-w-collapsed: 78px;
+  --pad: 28px;
+}
+
+* { font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif; }
+body { background: var(--bg); color: #26364b; }
+button, input, select, textarea { font: inherit; }
+button { transition: background .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+
+.sidebar {
+  background: #172b3d;
+  color: #eaf1f5;
+  padding: 26px 16px 20px;
+  box-shadow: 5px 0 24px rgba(17, 38, 56, .08);
+}
+.sidebar .sb-top { min-height: 54px; padding: 0 10px; }
+.sidebar .logo { min-width: 0; }
+.inn-brand-name {
+  display: block;
+  color: #fff;
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 750;
+  letter-spacing: -.45px;
+  overflow-wrap: anywhere;
+}
+.sidebar .menu ul { margin-top: 34px; display: grid; gap: 6px; }
+.sidebar .menu a {
+  min-height: 46px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  color: #c7d3dc;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color .18s ease, background .18s ease;
+}
+.sidebar .menu a img { width: 20px; height: 20px; object-fit: contain; opacity: .82; }
+.sidebar .menu a:hover { color: #fff; background: rgba(255,255,255,.08); }
+.sidebar .menu a.active,
+.sidebar .menu .active a {
+  color: #fff;
+  background: #247a78;
+  box-shadow: 0 5px 14px rgba(15, 113, 108, .22);
+}
+.sidebar .menu a.active img,
+.sidebar .menu .active a img { filter: brightness(0) invert(1); opacity: 1; }
+.sidebar .employee {
+  padding: 13px 12px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  color: #e8eff3;
+  font-size: 13px;
+}
+.sidebar .employee img { width: 34px; height: 34px; object-fit: cover; border: 2px solid rgba(255,255,255,.18); }
+.sb-toggle { background: rgba(255,255,255,.1); color: #fff; }
+
+.content { padding: 24px 30px 30px; }
+.top-bar { min-height: 44px; margin-bottom: 12px; }
+.top-bar .top-icons { display: flex; align-items: center; gap: 10px; }
+.top-bar .top-icons img {
+  width: 38px; height: 38px; object-fit: contain; padding: 9px;
+  border-radius: 11px; background: #fff; box-shadow: var(--shadow);
+}
+.page-slot { gap: 18px; }
+.page-header { margin: 4px 0 18px; }
+.page-title { color: #172b4d; font-size: clamp(25px, 2.6vw, 34px); font-weight: 750; letter-spacing: -.8px; }
+.page-actions { gap: 10px; }
+.search-wrap {
+  border: 1px solid #e2e8ef; background: #fff; box-shadow: none;
+  border-radius: 10px; padding: 10px 13px; min-height: 42px;
+}
+.search-wrap:focus-within { border-color: #58a5a1; box-shadow: 0 0 0 3px rgba(36,122,120,.10); }
+.search-wrap input { color: #26364b; }
+.page-date input { border: 1px solid #e2e8ef; border-radius: 9px; background: #fff; box-shadow: none; color: #34445a; }
+.page-date span { color: #53657a; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+.page-apply { border-radius: 9px; background: #247a78; color: #fff; box-shadow: none; }
+.page-apply:hover { background: #1c6664; }
+
+.g-card, .inv-card, .room-card, .tx-card {
+  margin-top: 14px; padding: 20px; background: #fff;
+  border: 1px solid #e8edf2; border-radius: 14px; box-shadow: var(--shadow);
+}
+.g-table-wrap, .inv-table-wrap, .room-table-wrap, .tx-table-wrap {
+  border: 1px solid #e8edf2; border-radius: 11px; background: #fff;
+}
+.g-table, .inv-table, .room-table, .tx-table { border-spacing: 0; }
+.g-table thead th, .inv-table thead th, .room-table thead th, .tx-table thead th {
+  padding: 14px 15px; background: #f4f7f9; color: #53657a;
+  font-size: 11px; font-weight: 750; letter-spacing: .055em;
+  text-transform: uppercase; border-bottom: 1px solid #e7edf2;
+}
+.g-table thead th:first-child, .inv-table thead th:first-child,
+.room-table thead th:first-child, .tx-table thead th:first-child { border-radius: 0; }
+.g-table thead th:last-child, .inv-table thead th:last-child,
+.room-table thead th:last-child, .tx-table thead th:last-child { border-radius: 0; }
+.g-table tbody td, .inv-table tbody td, .room-table tbody td, .tx-table tbody td {
+  padding: 14px 15px; background: #fff; color: #34445a;
+  font-size: 13px; border-bottom: 1px solid #edf1f4;
+}
+.g-table tbody tr:hover td, .inv-table tbody tr:hover td,
+.room-table tbody tr:hover td, .tx-table tbody tr:hover td { background: #f9fbfc; }
+.g-table tbody tr:last-child td, .inv-table tbody tr:last-child td,
+.room-table tbody tr:last-child td, .tx-table tbody tr:last-child td { border-bottom: 0; }
+
+.summary-cards { gap: 14px; margin: 16px 0 20px; }
+.summary-cards .card {
+  min-height: 108px; height: auto; padding: 18px 20px;
+  border: 1px solid #e8edf2; border-radius: 13px; background: #fff;
+  box-shadow: var(--shadow); color: #172b4d;
+}
+.summary-cards .card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(23,43,77,.09); }
+.summary-cards .card p { color: #718096; font-size: 12px; font-weight: 600; }
+
+/* Consistent form controls and action buttons across modules. */
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+  color: #26364b;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #58a5a1 !important;
+  box-shadow: 0 0 0 3px rgba(36,122,120,.10);
+}
+button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
+  outline: 3px solid rgba(36,122,120,.35);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  :root { --pad: 18px; }
+  .content { padding: 18px; }
+}
+@media (max-width: 720px) {
+  .sidebar { padding: 16px 10px; }
+  .sidebar.open { width: min(248px, 84vw); }
+  .content { padding: 14px; }
+  .page-title { font-size: 26px; }
+  .g-card, .inv-card, .room-card, .tx-card { padding: 12px; border-radius: 12px; }
+  .summary-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
